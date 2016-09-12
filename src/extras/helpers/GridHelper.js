@@ -12,8 +12,10 @@ import { Color } from '../../math/Color';
 function GridHelper( size, divisions, color1, color2, markerDiv, colorDiv ) {
 
 	divisions = divisions || 1;
-	color1 = new Color( color1 !== undefined ? color1 : 0x444444 );
-	color2 = new Color( color2 !== undefined ? color2 : 0x888888 );
+	color1 = new THREE.Color( color1 !== undefined ? color1 : 0x444444 );
+	color2 = new THREE.Color( color2 !== undefined ? color2 : 0x888888 );
+	colorDiv = new THREE.Color( colorDiv !== undefined ? colorDiv : 0xff00ff );
+
 
 	var center = divisions / 2;
 	var step = ( size * 2 ) / divisions;
@@ -25,7 +27,7 @@ function GridHelper( size, divisions, color1, color2, markerDiv, colorDiv ) {
 		vertices.push( k, 0, - size, k, 0, size );
 
 		var color = i === center ? color1 : color2;
-		if (k%markerDiv == 0)  //sections of grid
+		if (k != 0 && k%markerDiv == 0)  //sections of grid
 			color = colorDiv;
 		color.toArray( colors, j ); j += 3;
 		color.toArray( colors, j ); j += 3;
