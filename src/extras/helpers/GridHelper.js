@@ -9,7 +9,7 @@ import { Color } from '../../math/Color';
  * @author mrdoob / http://mrdoob.com/
  */
 
-function GridHelper( size, divisions, color1, color2 ) {
+function GridHelper( size, divisions, color1, color2, markerDiv, colorDiv ) {
 
 	divisions = divisions || 1;
 	color1 = new Color( color1 !== undefined ? color1 : 0x444444 );
@@ -25,7 +25,8 @@ function GridHelper( size, divisions, color1, color2 ) {
 		vertices.push( k, 0, - size, k, 0, size );
 
 		var color = i === center ? color1 : color2;
-
+		if (k%markerDiv == 0)  //sections of grid
+			color = colorDiv;
 		color.toArray( colors, j ); j += 3;
 		color.toArray( colors, j ); j += 3;
 		color.toArray( colors, j ); j += 3;
